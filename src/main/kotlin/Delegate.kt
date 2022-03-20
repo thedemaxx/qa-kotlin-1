@@ -2,12 +2,12 @@ import kotlin.random.Random
 import kotlin.reflect.KProperty
 
 
-const val MINES_COUNT = 6
-const val HELP_COUNT = 6
-const val SHIPS_LEN_1_COUNT = 6
-const val SHIPS_LEN_2_COUNT = 5
-const val SHIPS_LEN_3_COUNT = 4
-const val SHIPS_LEN_4_COUNT = 3
+const val MINES_COUNT = 0
+const val HELP_COUNT = 0
+const val SHIPS_LEN_1_COUNT = 0
+const val SHIPS_LEN_2_COUNT = 1
+const val SHIPS_LEN_3_COUNT = 1
+const val SHIPS_LEN_4_COUNT = 1
 
 
 class BattleFieldDelegate(val gameObjects: MutableList<GameObject>) {
@@ -106,7 +106,7 @@ class BattleFieldDelegate(val gameObjects: MutableList<GameObject>) {
             val direction = Direction.values()[Random.nextInt(Direction.values().size)]
             val (x, y, z) = generateRandomPosition()
             if (canPropogateShip(x, y, z, len, direction)) {
-                //сохранить корабль и разметить точки на поле
+                //сохранить статик корабль и разметить точки на поле
                 propogateShipToMap(x, y, z, len, direction, type)
                 gameObjects.add(StaticShipObject(x, y, z, len, direction))
                 break
@@ -115,8 +115,8 @@ class BattleFieldDelegate(val gameObjects: MutableList<GameObject>) {
     }
 
     fun propogateShips() {
-        for (i in 1..SHIPS_LEN_4_COUNT) placeShip(4, ObjectType.STATIC_SHIP)
-        for (i in 1..SHIPS_LEN_3_COUNT) placeShip(3, ObjectType.STATIC_SHIP)
+        for (i in 1..SHIPS_LEN_4_COUNT) placeShip(4, ObjectType.MOVING_SHIP)
+        for (i in 1..SHIPS_LEN_3_COUNT) placeShip(3, ObjectType.MOVING_SHIP)
         for (i in 1..SHIPS_LEN_2_COUNT) placeShip(2, ObjectType.STATIC_SHIP)
         for (i in 1..SHIPS_LEN_1_COUNT) placeShip(1, ObjectType.STATIC_SHIP)
     }
@@ -126,13 +126,9 @@ class BattleFieldDelegate(val gameObjects: MutableList<GameObject>) {
             //заполнить поле случайным расположением
             battleField = BattleField()
             //заполняем объектами
-            println("Mines")
             propagateMines()
-            println("Helps")
             propogateHelp()
-            println("Ships")
             propogateShips()
-            println("Battle field is filled")
         }
         return battleField!!
     }

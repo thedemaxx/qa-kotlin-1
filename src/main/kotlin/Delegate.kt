@@ -2,12 +2,12 @@ import kotlin.random.Random
 import kotlin.reflect.KProperty
 
 
-const val MINES_COUNT = 0
-const val HELP_COUNT = 0
+const val MINES_COUNT = 1
+const val HELP_COUNT = 1
 const val SHIPS_LEN_1_COUNT = 0
-const val SHIPS_LEN_2_COUNT = 1
-const val SHIPS_LEN_3_COUNT = 1
-const val SHIPS_LEN_4_COUNT = 1
+const val SHIPS_LEN_2_COUNT = 8
+const val SHIPS_LEN_3_COUNT = 8
+const val SHIPS_LEN_4_COUNT = 2
 
 
 class BattleFieldDelegate(val gameObjects: MutableList<GameObject>) {

@@ -13,17 +13,19 @@ fun BattleField.renderLine(y: Int, z: Int): String {
 }
 
 fun BattleField.render() {
+    println("|========|========|========|========|")
     // группировка по 4
     for (zr in 0 until (DEPTH + 3) / 4) {
+        //for (zr in 0 until DEPTH) {
         for (y in 0 until HEIGHT) {
-            var line = ""
+            var line = "|"
             for (zd in 0..3) {
                 line += renderLine(y, zr * 4 + zd)
-                if (zd != 3) line += "  |  "
+                line += "|"
             }
             println(line)
         }
-        println("================================================")
+        println("|========|========|========|========|")
     }
 }
 
